@@ -1,13 +1,15 @@
-
 import { useState } from "react";
 import DashboardLayout from "../components/Dashboard/DashboardLayout";
+import CamionList from "../components/Camions/CamionList";
+import UserList from "../components/Users/UserList";
 
 function AdminDashboard({ onLogout, user }) {
   const [activeSection, setActiveSection] = useState("overview");
 
   const menuItems = [
     { id: "overview", label: "Vue générale" },
-    { id: "drivers", label: "Chauffeurs" },
+    { id: "users", label: "Utilisateurs" },
+    { id: "camions", label: "Camions" },
     { id: "pending", label: "Demandes en attente" },
   ];
 
@@ -21,13 +23,21 @@ function AdminDashboard({ onLogout, user }) {
           </div>
         );
 
+      case "camions":
+        return <CamionList />;
+
       case "pending":
         return (
           <div>
             <h2>Demandes en attente</h2>
-            <p>Consultez les demandes des chauffeurs en attente de validation.</p>
+            <p>
+              Consultez les demandes des chauffeurs en attente de validation.
+            </p>
           </div>
         );
+
+      case "users":
+        return <UserList currentUser={user} />;
 
       default:
         return (
