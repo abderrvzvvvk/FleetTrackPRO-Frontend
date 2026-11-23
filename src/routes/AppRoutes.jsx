@@ -1,5 +1,10 @@
-
-import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import {
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 
 import Login from "../components/Login/Login";
 import AdminLayout from "../components/Dashboard/AdminLayout";
@@ -26,11 +31,17 @@ function getHomePath(user) {
 }
 
 function isAllowedPath(path, user) {
-  if (path.startsWith("/admin")) {
+  if (!user) return false;
+
+  const isAdminPath = path === "/admin" || path.startsWith("/admin/");
+
+  const isDriverPath = path === "/chauffeur" || path.startsWith("/chauffeur/");
+
+  if (isAdminPath) {
     return ["ADMIN", "SUPER_ADMIN"].includes(user.role);
   }
 
-  if (path.startsWith("/chauffeur")) {
+  if (isDriverPath) {
     return user.role === "CHAUFFEUR";
   }
 
@@ -106,12 +117,7 @@ function AppRoutes({ user, loading, onLoginSuccess, onLogout }) {
     <Routes>
       <Route
         path="/login"
-        element={
-          <LoginRoute
-            user={user}
-            onLoginSuccess={onLoginSuccess}
-          />
-        }
+        element={<LoginRoute user={user} onLoginSuccess={onLoginSuccess} />}
       />
 
       <Route path="/403" element={<Unauthorized />} />
@@ -119,13 +125,20 @@ function AppRoutes({ user, loading, onLoginSuccess, onLogout }) {
       <Route element={<RequireAuth user={user} loading={loading} />}>
         <Route path="/" element={<Navigate to={getHomePath(user)} replace />} />
 
-        <Route element={<RequireRole user={user} allowedRoles={["ADMIN", "SUPER_ADMIN"]} />}>
+        <Route
+          element={
+            <RequireRole user={user} allowedRoles={["ADMIN", "SUPER_ADMIN"]} />
+          }
+        >
           <Route
             path="/admin"
             element={<AdminLayout user={user} onLogout={handleLogout} />}
           >
             <Route index element={<AdminHome />} />
-            <Route path="utilisateurs" element={<UserList currentUser={user} />} />
+            <Route
+              path="utilisateurs"
+              element={<UserList currentUser={user} />}
+            />
             <Route path="camions" element={<CamionList />} />
             <Route path="remorques" element={<RemorquesPage />} />
             <Route path="remorques/nouveau" element={<RemorquesPage />} />
@@ -137,14 +150,19 @@ function AppRoutes({ user, loading, onLoginSuccess, onLogout }) {
           </Route>
         </Route>
 
-        <Route element={<RequireRole user={user} allowedRoles={["CHAUFFEUR"]} />}>
+        <Route
+          element={<RequireRole user={user} allowedRoles={["CHAUFFEUR"]} />}
+        >
           <Route
             path="/chauffeur"
             element={<DriverLayout user={user} onLogout={handleLogout} />}
           >
             <Route index element={<ChauffeurHome user={user} />} />
             <Route path="trajets" element={<ChauffeurTrajets />} />
-            <Route path="trajets/:id" element={<h2>Détail du trajet — À développer</h2>} />
+            <Route
+              path="trajets/:id"
+              element={<h2>Détail du trajet — À développer</h2>}
+            />
           </Route>
         </Route>
       </Route>
