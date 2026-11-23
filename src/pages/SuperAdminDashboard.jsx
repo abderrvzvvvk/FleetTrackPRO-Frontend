@@ -1,24 +1,21 @@
 
 import { useState } from "react";
 import DashboardLayout from "../components/Dashboard/DashboardLayout";
+import UserList from "../components/Users/UserList";
 
 function SuperAdminDashboard({ onLogout, user }) {
   const [activeSection, setActiveSection] = useState("overview");
 
   const menuItems = [
     { id: "overview", label: "Vue générale" },
-    { id: "admins", label: "Administrateurs" },
-    { id: "drivers", label: "Chauffeurs" },
+    { id: "users", label: "Utilisateurs" },
     { id: "pending", label: "Demandes en attente" },
   ];
 
   function renderContent() {
     switch (activeSection) {
-      case "admins":
-        return <h2>Gestion des administrateurs</h2>;
-
-      case "drivers":
-        return <h2>Gestion des chauffeurs</h2>;
+      case "users":
+        return <UserList currentUser={user} />;
 
       case "pending":
         return <h2>Demandes en attente</h2>;
