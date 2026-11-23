@@ -1,0 +1,84 @@
+
+.unauthorized-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: #f4f6f9;
+}
+
+.unauthorized-card {
+  width: 100%;
+  max-width: 480px;
+  padding: 45px 35px;
+  text-align: center;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.unauthorized-icon {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #fff0f0;
+  color: #dc3545;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.unauthorized-card h1 {
+  margin-bottom: 12px;
+  color: #1f2937;
+  font-size: 28px;
+}
+
+.unauthorized-card p {
+  margin-bottom: 28px;
+  color: #6b7280;
+  line-height: 1.7;
+}
+
+.unauthorized-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.unauthorized-btn {
+  padding: 12px 22px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.unauthorized-btn.primary {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.unauthorized-btn.secondary {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.unauthorized-btn:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.unauthorized-footer {
+  display: block;
+  margin-top: 35px;
+  color: #9ca3af;
+  font-size: 12px;
+}
