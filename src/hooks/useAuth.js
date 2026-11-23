@@ -13,8 +13,10 @@ export function useAuth() {
       try {
         const result = await authApi.getMe(controller.signal);
 
-        if (result.success) {
+        if (result.success && result.data?.user) {
           setUser(result.data.user);
+        } else {
+          setUser(null);
         }
       } catch (error) {
         if (error.name !== "AbortError") {
