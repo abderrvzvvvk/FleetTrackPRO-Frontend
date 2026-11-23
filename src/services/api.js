@@ -27,11 +27,27 @@ async function apiRequest(path, options = {}) {
   return result;
 }
 
+// Authentification
+export const authApi = {
+  login: (data) =>
+    apiRequest("/auth/login", {
+      method: "POST",
+      body: JSON.stringify(data),
+    }),
+
+  getMe: (signal) =>
+    apiRequest("/auth/me", { signal }),
+
+  logout: () =>
+    apiRequest("/auth/logout", { method: "POST" }),
+};
+
 // Camions
 export const camionApi = {
-  getAll: () => apiRequest("/camions"),
+  getAll: (signal) => apiRequest("/camions", { signal }),
 
-  getById: (id) => apiRequest(`/camions/${id}`),
+  getById: (id, signal) =>
+    apiRequest(`/camions/${id}`, { signal }),
 
   create: (data) =>
     apiRequest("/camions", {
@@ -46,18 +62,18 @@ export const camionApi = {
     }),
 
   delete: (id) =>
-    apiRequest(`/camions/${id}`, {
-      method: "DELETE",
-    }),
+    apiRequest(`/camions/${id}`, { method: "DELETE" }),
 };
 
 // Utilisateurs
 export const userApi = {
-  getAll: () => apiRequest("/users"),
+  getAll: (signal) => apiRequest("/users", { signal }),
 
-  getPending: () => apiRequest("/users/pending"),
+  getPending: (signal) =>
+    apiRequest("/users/pending", { signal }),
 
-  getById: (id) => apiRequest(`/users/${id}`),
+  getById: (id, signal) =>
+    apiRequest(`/users/${id}`, { signal }),
 
   update: (id, data) =>
     apiRequest(`/users/${id}`, {
@@ -66,22 +82,22 @@ export const userApi = {
     }),
 
   validate: (id) =>
-    apiRequest(`/users/${id}/validate`, {
-      method: "PATCH",
-    }),
+    apiRequest(`/users/${id}/validate`, { method: "PATCH" }),
 
   reject: (id) =>
-    apiRequest(`/users/${id}/reject`, {
-      method: "PATCH",
-    }),
+    apiRequest(`/users/${id}/reject`, { method: "PATCH" }),
 
   suspend: (id) =>
-    apiRequest(`/users/${id}/suspend`, {
-      method: "PATCH",
-    }),
+    apiRequest(`/users/${id}/suspend`, { method: "PATCH" }),
 
   reactivate: (id) =>
-    apiRequest(`/users/${id}/reactivate`, {
-      method: "PATCH",
-    }),
+    apiRequest(`/users/${id}/reactivate`, { method: "PATCH" }),
+};
+
+// Trajets
+export const trajetApi = {
+  getAll: (signal) => apiRequest("/trajets", { signal }),
+
+  getById: (id, signal) =>
+    apiRequest(`/trajets/${id}`, { signal }),
 };
