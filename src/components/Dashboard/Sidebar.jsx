@@ -1,30 +1,29 @@
 
+import { NavLink } from "react-router-dom";
 import "./Sidebar.css";
 
-function Sidebar({
-  menuItems,
-  activeSection,
-  onSectionChange,
-  onLogout,
-}) {
+function Sidebar({ menuItems, onLogout }) {
   return (
     <aside className="sidebar">
       <div className="sidebar-brand">
-        <h2>FleetTrack<span>PRO</span></h2>
+        <h2>
+          FleetTrack<span>PRO</span>
+        </h2>
         <small>Transport Management</small>
       </div>
 
       <nav className="sidebar-nav">
         {menuItems.map((item) => (
-          <button
+          <NavLink
             key={item.id}
-            className={`sidebar-link ${
-              activeSection === item.id ? "active" : ""
-            }`}
-            onClick={() => onSectionChange(item.id)}
+            to={item.path}
+            end={item.end}
+            className={({ isActive }) =>
+              `sidebar-link ${isActive ? "active" : ""}`
+            }
           >
             {item.label}
-          </button>
+          </NavLink>
         ))}
       </nav>
 

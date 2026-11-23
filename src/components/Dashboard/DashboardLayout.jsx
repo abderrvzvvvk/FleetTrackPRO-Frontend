@@ -1,22 +1,18 @@
 
+import { Outlet } from "react-router-dom";
 import "./DashboardLayout.css";
 import Sidebar from "./Sidebar";
 
 function DashboardLayout({
   title,
   menuItems,
-  activeSection,
-  onSectionChange,
   user,
   onLogout,
-  children,
 }) {
   return (
     <div className="dashboard">
       <Sidebar
         menuItems={menuItems}
-        activeSection={activeSection}
-        onSectionChange={onSectionChange}
         onLogout={onLogout}
       />
 
@@ -34,7 +30,7 @@ function DashboardLayout({
         </header>
 
         <section className="dashboard-content">
-          {children}
+          <Outlet />
         </section>
       </main>
     </div>
