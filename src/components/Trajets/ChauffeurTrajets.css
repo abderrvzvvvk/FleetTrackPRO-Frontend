@@ -1,0 +1,217 @@
+
+.chauffeur-trajets {
+  width: 100%;
+  color: #1f2937;
+}
+
+.trajets-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.trajets-header h2 {
+  margin: 0 0 6px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.trajets-header p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.trajets-refresh-btn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.trajets-refresh-btn:hover {
+  background: #1d4ed8;
+}
+
+.trajets-refresh-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.trajets-error {
+  padding: 13px 16px;
+  margin-bottom: 20px;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  background: #fef2f2;
+  color: #b91c1c;
+  font-size: 14px;
+}
+
+.trajets-loading,
+.trajets-empty {
+  padding: 40px 20px;
+  border: 1px dashed #d1d5db;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #6b7280;
+  text-align: center;
+  font-size: 14px;
+}
+
+.trajets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+.trajet-card {
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.trajet-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+}
+
+.trajet-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.trajet-card-header h3 {
+  margin: 0;
+  color: #111827;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.trajet-status {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.trajet-status-a-faire {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.trajet-status-en-cours {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.trajet-status-termine {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.trajet-route {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.trajet-location {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.trajet-location-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: #eff6ff;
+  color: #2563eb;
+  font-size: 15px;
+}
+
+.trajet-location div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.trajet-location small {
+  color: #9ca3af;
+  font-size: 11px;
+}
+
+.trajet-location strong {
+  color: #374151;
+  font-size: 14px;
+}
+
+.trajet-card-divider {
+  height: 1px;
+  margin: 16px 0;
+  background: #f3f4f6;
+}
+
+.trajet-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.trajet-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.trajet-detail span {
+  color: #6b7280;
+}
+
+.trajet-detail strong {
+  color: #374151;
+  text-align: right;
+  font-weight: 600;
+}
+
+@media (max-width: 650px) {
+  .trajets-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .trajets-refresh-btn {
+    width: 100%;
+  }
+
+  .trajets-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .trajet-card {
+    padding: 16px;
+  }
+}
